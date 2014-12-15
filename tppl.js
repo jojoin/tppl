@@ -8,15 +8,15 @@ function tppl(tpl, data, fast){
     if(fast){
         fn.$$ = fn.$$ || new Function(fn.$);
         return fn.$$.apply(d);
+    }else{
+      var i, k = [], v = [];
+      for (i in d) {
+          k.push(i);
+          v.push(d[i]);
+      };
+      return (new Function(k, fn.$)).apply(d, v);
     }
-    var i, k = [], v = [];
-    for (i in d) {
-        k.push(i);
-        v.push(d[i]);
-    };
-    return (new Function(k, fn.$)).apply(d, v);
   };
-
   if(!fn.$){
     fn.$ = 'var $="";';
     var tpls = tpl.replace(/[\r\t\n]/g, " ").replace(/\'/g,"\\'").split('[:')

@@ -1,18 +1,9 @@
 
-function tppl(tpl, data, fast){
+function tppl(tpl, data){
   var fn =  function (d) {
-    if(fast){
-        fn.$$ = fn.$$ || new Function(fn.$);
-        return fn.$$.apply(d);
-    }
-    var i, k = [], v = [];
-    for (i in d) {
-        k.push(i);
-        v.push(d[i]);
-    };
-    return (new Function(k, fn.$)).apply(d, v);
+      fn.$$ = fn.$$ || new Function(fn.$);
+      return fn.$$.apply(d);
   };
-
   if(!fn.$){
     fn.$ = 'var $="";';
     var tpls = tpl.replace(/[\r\t\n]/g, " ").replace(/\'/g,"\\'").split('[:')
