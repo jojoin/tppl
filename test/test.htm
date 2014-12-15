@@ -6,7 +6,6 @@
 <script src="./js/jquery-1.7.2.min.js"></script>
 <script src="./js/highcharts.js"></script>
 
-
 <script src="./js/template-native.js"></script>
 <script src="./js/tppl.js"></script>
 <script src="./js/tmpl.js"></script>
@@ -21,8 +20,6 @@
 <script src="./js/easytemplate.js"></script>
 <script src="./js/underscore.js"></script>
 <script src="./js/yaya-template.js"></script>
-
-
 
 
 <script>
@@ -464,10 +461,11 @@ var startTest = function () {
 <link type="text/css" rel="stylesheet" href="chrome-extension://cpngackimfmofbokmjmljamhdncknpmg/style.css"><script type="text/javascript" charset="utf-8" src="chrome-extension://cpngackimfmofbokmjmljamhdncknpmg/page_context.js"></script></head>
 
 <body screen_capture_injected="true">
-<h1>引擎渲染速度测试</h1>
+<h1>JS模板引擎速度测试</h1>
 <p><strong><script>document.write(length)</script></strong> 条数据 × <strong><script>document.write(number)</script></strong> 次渲染测试 [escape:false, cache:true]</p>
 <p style="font-size:12px;color:#999;">建议在拥有 v8 javascript 引擎的 chrome 浏览器上进行测试，避免浏览器停止响应。单次结果不一定准确，请多测试几次。</p>
-<p><button id="button-test" onclick="this.disabled=true;startTest()" style="padding: 10px;">开始测试»</button> <span id="log" style="font-size:12px"><script>for (var i = 0; i < testList.length; i ++) {document.write(testList[i].name + '; ')}</script>artTemplate; YayaTemplate; juicer; doT; Handlebars; tppl; tmpl; easyTemplate; underscoreTemplate; baiduTemplate; Mustache; kissyTemplate; </span></p>
+<p  style="font-size:12px;color:#999;">本测试来自：<a href="http://aui.github.io/artTemplate/test/test-speed.html" target="_block">http://aui.github.io/artTemplate/test/test-speed.html</a>，在此基础上添加了 tppl 和 YayaTemplate。</p>
+<p><button id="button-test" onclick="this.disabled=true;startTest()" style="padding: 10px;">开始测试»</button> <span id="log" style="font-size:12px"><script>for (var i = 0; i < testList.length; i ++) {document.write(testList[i].name + '; ')}</script></span></p>
 <div id="container" style="min-width: 400px; margin: 0 auto"></div>
 
 </body></html>
