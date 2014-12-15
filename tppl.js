@@ -1,5 +1,15 @@
 /**
- * 
+ * tppl.js 极致性能的 JS 模板引擎
+ * Github：https://github.com/yangjiePro/tppl
+ * 作者：杨捷  
+ * 邮箱：yangjie@jojoin.com
+ *
+ * @param tpl {String}    模板字符串
+ * @param data {Object}   模板数据（不传或为null时返回渲染方法）
+ * @param data {Boolen}   是否为快速模式
+ *
+ * @return  {String}    渲染结果
+ * @return  {Function}  渲染方法
  *
  */
 
