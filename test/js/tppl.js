@@ -1,7 +1,3 @@
-/**
- * 
- *
- */
 
 function tppl(tpl, data, fast){
   var fn =  function (d) {
