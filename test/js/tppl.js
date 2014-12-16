@@ -1,26 +1,24 @@
 
-function tppl(tpl, data){
-  var fn = function (d) {
-    //console.log(fn);
-    return fn.$.apply(d);
+function tppl(tpl, data, fast){
+  var fn =  function (d, f) {
+    fn.$$ = fn.$$ || new Function(fn.$);
+    return fn.$$.apply(d);
   };
   if(!fn.$){
-    var $ = 'var $="";';
+    fn.$ = 'var $="";';
     var tpls = tpl.replace(/[\r\t\n]/g, " ").split('[:')
-      , l = tpls.length
       , i = 0
-    while(i<l){
+    while(i<tpls.length){
       var p = tpls[i];
       if(i){
         var x = p.indexOf(':]');
-        $ += p.substr(0, x);
+        fn.$ += p.substr(0, x);
         p = p.substr(x+2)
       }
-      $ += "$+='"+p.replace(/\[\=\:(.*?)\:\]/g, "'+$1+'")+"';";
+      fn.$ += "$+='"+p.replace(/\[\=\:(.*?)\:\]/g, "'+$1+'")+"';";
       i++;
     }
-    $ += "return $";
-    fn.$ = new Function($);
+    fn.$ += "return $";
   }
 
   return data ? fn(data) : fn;

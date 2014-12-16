@@ -15,7 +15,7 @@
 
 function tppl(tpl, data, fast){
   var fn =  function (d, f) {
-    if(fast||f){
+    if(f||fast){
         fn.$$ = fn.$$ || new Function(fn.$);
         return fn.$$.apply(d);
     }else{
