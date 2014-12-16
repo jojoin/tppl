@@ -26,11 +26,11 @@
 // 数据量
 var length = 10;
 // 模板量
-var tplnum = 10;
+var tplnum = 1;
 // 编译次数
 var compile = 100;
 // 渲染次数
-var number = 100;
+var number = 1000;
 
 var data = {
     list: []
@@ -304,9 +304,11 @@ var startTest = function () {
         var source = document.getElementById(target.name).innerHTML
           , tplstr = '';
         for(var i=0;i<tplnum;i++){
-            tplstr += source;
+            tplstr += source+"\n\n\n";
         }
-        console.log(target.name);
+        //console.log(target.name);
+        //console.log(source);
+
         var time = new Timer;
         for(var i=0;i<compile;i++){
             target.tester(tplstr);
