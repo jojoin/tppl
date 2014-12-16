@@ -24,7 +24,11 @@
 
 <script>
 // 数据量
-var length = 1000;
+var length = 10;
+// 模板量
+var tplnum = 10;
+// 编译次数
+var compile = 100;
 // 渲染次数
 var number = 100;
 
@@ -48,9 +52,9 @@ var testList = [
 
     {
         name: 'tppl',
-        tester: function () {
-            var source = document.getElementById('tppl').innerHTML;
-            var fn = tppl(source, null, true);
+        tester: function (source) {
+            //var source = document.getElementById('tppl').innerHTML;
+            var fn = tppl(source);
             for (var i = 0; i < number; i ++) {
                 fn(data);
             }
@@ -59,9 +63,9 @@ var testList = [
 
     {
         name: 'artTemplate',
-        tester: function () {
+        tester: function (source) {
             //template.config('escape', false);
-            var source = document.getElementById('template').innerHTML;
+            //var source = document.getElementById('template').innerHTML;
             var fn = template.compile(source);
             for (var i = 0; i < number; i ++) {
                 fn(data);
@@ -72,8 +76,8 @@ var testList = [
     
     {
         name: 'doT',
-        tester: function () {
-            var source = document.getElementById('doT').innerHTML;
+        tester: function (source) {
+            //var source = document.getElementById('doT').innerHTML;
             var doTtmpl = doT.template(source);
             for (var i = 0; i < number; i ++) {
                 doTtmpl(data);
@@ -83,8 +87,8 @@ var testList = [
 
     {
         name:'YayaTemplate',
-        tester:function () {
-            var source = document.getElementById('yayatemplate').innerHTML;
+        tester:function (source) {
+            //var source = document.getElementById('yayatemplate').innerHTML;
             var template = YayaTemplate(source);
             for (var i = 0; i < number; i ++) {
                 template.render(data);
@@ -92,23 +96,26 @@ var testList = [
             
         }
     },
-    
+
     {
         name: 'juicer',
-        tester: function () {
+        tester: function (source) {
             var config = {cache:true};
-
-            var source = document.getElementById('juicer').innerHTML;
+            //var source = document.getElementById('juicer').innerHTML;
+            var fn = juicer.compile(source);
+            //console.log(fn.render);
+            //jill.kill
             for (var i = 0; i < number; i ++) {
-                juicer.to_html(source, data, config);
+                //juicer.to_html(source, data, config);
+                fn.render(data);
             }
         }
     },
     
     {
         name: 'Handlebars',
-        tester: function () {
-            var source = document.getElementById('Handlebars').innerHTML;
+        tester: function (source) {
+            //var source = document.getElementById('Handlebars').innerHTML;
             var fn = Handlebars.compile(source);
             for (var i = 0; i < number; i ++) {
                 fn(data);
@@ -119,8 +126,8 @@ var testList = [
     
     {
         name: 'Mustache',
-        tester: function () {
-            var source = document.getElementById('Mustache').innerHTML;
+        tester: function (source) {
+            //var source = document.getElementById('Mustache').innerHTML;
             for (var i = 0; i < number; i ++) {
                 Mustache.to_html(source, data);
             }
@@ -129,8 +136,8 @@ var testList = [
 
     {
         name: 'tmpl',
-        tester: function () {
-            var source = document.getElementById('tmpl').innerHTML;
+        tester: function (source) {
+            //var source = document.getElementById('tmpl').innerHTML;
             var fn = tmpl(source);
             for (var i = 0; i < number; i ++) {
                 fn(data);
@@ -138,22 +145,24 @@ var testList = [
         }
     },
     
+    // easyTemplate 太慢，可能导致浏览器停止响应
+    /*
     {
         name: 'easyTemplate',
-        tester: function () {
-            var source = document.getElementById('easyTemplate').innerHTML;
+        tester: function (source) {
+            //var source = document.getElementById('easyTemplate').innerHTML;
             var fn = easyTemplate(source);
             for (var i = 0; i < number; i ++) {
                 // easyTemplate 渲染方法被重写到 toString(), 需要取值操作才会运行
                 fn(data) + '';
             }
         }
-    },
+    },*/
 
     {
         name: 'underscoreTemplate',
-        tester: function () {
-            var source = document.getElementById('underscoreTemplate').innerHTML;
+        tester: function (source) {
+            //var source = document.getElementById('underscoreTemplate').innerHTML;
             var fn = _.template(source);
             for (var i = 0; i < number; i ++) {
                 fn(data);
@@ -161,16 +170,19 @@ var testList = [
         }
     },
     
+    // baiduTemplate 太慢，可能导致浏览器停止响应
+    /*
     {
         name: 'baiduTemplate',
-        tester: function () {
+        tester: function (source) {
             var bt=baidu.template;
             bt.ESCAPE = false;
             for (var i = 0; i < number; i ++) {
-                bt('baidu-template', data);
+                //bt('baidu-template', data);
+                bt(source, data);
             }
         }
-    },
+    },*/
     
     // jqueryTmpl 太慢，可能导致浏览器停止响应
     /*{
@@ -190,9 +202,8 @@ var testList = [
 KISSY.use('template',function(S,T) {
     testList.push({
         name: 'kissyTemplate',
-        tester: function () {
-            var source= document.getElementById('kissy').innerHTML;
-
+        tester: function (source) {
+            //var source= document.getElementById('kissy').innerHTML;
             for (var i = 0; i < number; i ++) {
                 T(source).render(data);
             }
@@ -231,7 +242,7 @@ var startTest = function () {
         },
 
         subtitle: {
-            text: length + ' 条数据 × ' + number + ' 次渲染'
+            text: length + ' 条数据 × ' + compile + ' 次编译 × ' + number + ' 次渲染'
         },
                 
         xAxis: {
@@ -290,8 +301,16 @@ var startTest = function () {
     var tester = function (target) {
     
         
+        var source = document.getElementById(target.name).innerHTML
+          , tplstr = '';
+        for(var i=0;i<tplnum;i++){
+            tplstr += source;
+        }
+        console.log(target.name);
         var time = new Timer;
-        target.tester();
+        for(var i=0;i<compile;i++){
+            target.tester(tplstr);
+        }
         var endTime = time.stop();
         
         chart.series[0].addPoint({
@@ -326,18 +345,18 @@ var startTest = function () {
 
 
 
-<!-- yayatemplate 的模板 -->
-<script id="yayatemplate" type="text/tmpl">
-{$<ul>$}
-    for (var i = 0, l = list.length; i < l; i ++) { 
-        {$<li>{%list[i].index%}. 用户: {%list[i].user%}/ 网站：{%list[i].site%}</li>$}
-    }
-{$</ul>$}
+<!-- tppl 的模板 -->
+<script id="tppl" type="text/tmpl">
+<ul>
+    [: for (var val, i = 0, l = this.list.length; i < l; i ++) { :]
+        [: val = this.list[i]; :]
+        <li>用户: [=:val.user:]/ 网站：[=:val.site:]</li>
+    [: } :]
+</ul>
 </script>
 
-
 <!-- artTemplate 的模板 -->
-<script id="template" type="text/tmpl">
+<script id="artTemplate" type="text/tmpl">
 <ul>
     <% for (i = 0, l = list.length; i < l; i ++) { %>
         <li>用户: <%=#list[i].user%>/ 网站：<%=#list[i].site%></li>
@@ -346,7 +365,7 @@ var startTest = function () {
 </script>
 
 <!-- baidu-template 的模板 -->
-<script id="baidu-template" type="text/tmpl">
+<script id="baiduTemplate" type="text/tmpl">
 <ul>
     <% for (var val, i = 0, l = list.length; i < l; i ++) { %>
         <% val = list[i]; %>
@@ -364,14 +383,13 @@ var startTest = function () {
 </ul>
 </script>
 
-<!-- tppl 的模板 -->
-<script id="tppl" type="text/tmpl">
-<ul>
-    [: for (var val, i = 0, l = this.list.length; i < l; i ++) { :]
-        [: val = this.list[i]; :]
-        <li>用户: [=:val.user:]/ 网站：[=:val.site:]</li>
-    [: } :]
-</ul>
+<!-- yayatemplate 的模板 -->
+<script id="YayaTemplate" type="text/tmpl">
+{$<ul>$}
+    for (var i = 0, l = list.length; i < l; i ++) { 
+        {$<li>用户: {%list[i].user%}/ 网站：{%list[i].site%}</li>$}
+    }
+{$</ul>$}
 </script>
 
 <!-- tmpl 的模板 -->
@@ -431,7 +449,7 @@ var startTest = function () {
 </script>
 
 <!--kissy 的模板 -->
-<script id="kissy" type="text/tmpl">
+<script id="kissyTemplate" type="text/tmpl">
 <ul>
     {{#each list as val}}
         <li>用户: {{val.user}}/ 网站：{{val.site}}</li>
@@ -462,10 +480,14 @@ var startTest = function () {
 
 <body screen_capture_injected="true">
 <h1>JS模板引擎速度测试</h1>
-<p><strong><script>document.write(length)</script></strong> 条数据 × <strong><script>document.write(number)</script></strong> 次渲染测试 [escape:false, cache:true]</p>
+<p>
+    <strong><script>document.write(length)</script></strong> 条数据 × 
+    <strong><script>document.write(compile)</script></strong> 次编译 × 
+    <strong><script>document.write(number)</script></strong> 次渲染测试
+     [escape:false, cache:true]</p>
 <p style="font-size:12px;color:#999;">建议在拥有 v8 javascript 引擎的 chrome 浏览器上进行测试，避免浏览器停止响应。单次结果不一定准确，请多测试几次。</p>
 <p  style="font-size:12px;color:#999;">本测试来自：<a href="http://aui.github.io/artTemplate/test/test-speed.html" target="_block">http://aui.github.io/artTemplate/test/test-speed.html</a>，在此基础上添加了 tppl 和 YayaTemplate。</p>
-<p><button id="button-test" onclick="this.disabled=true;startTest()" style="padding: 10px;">开始测试»</button> <span id="log" style="font-size:12px"><script>for (var i = 0; i < testList.length; i ++) {document.write(testList[i].name + '; ')}</script></span></p>
+<p><a href=""><button>刷新重试</button></a><button id="button-test" onclick="this.disabled=true;startTest()" style="padding: 10px;">开始测试»</button> <span id="log" style="font-size:12px"><script>for (var i = 0; i < testList.length; i ++) {document.write(testList[i].name + '; ')}</script></span></p>
 <div id="container" style="min-width: 400px; margin: 0 auto"></div>
 
 </body></html>

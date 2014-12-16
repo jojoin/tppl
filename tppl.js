@@ -6,7 +6,7 @@
  *
  * @param tpl {String}    模板字符串
  * @param data {Object}   模板数据（不传或为null时返回渲染方法）
- * @param data {Boolen}   是否为快速模式
+ * @param fast {Boolen}   是否为快速模式
  *
  * @return  {String}    渲染结果
  * @return  {Function}  渲染方法
@@ -14,8 +14,8 @@
  */
 
 function tppl(tpl, data, fast){
-  var fn =  function (d) {
-    if(fast){
+  var fn =  function (d, f) {
+    if(fast||f){
         fn.$$ = fn.$$ || new Function(fn.$);
         return fn.$$.apply(d);
     }else{
