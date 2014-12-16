@@ -487,7 +487,7 @@ var startTest = function () {
     <strong><script>document.write(compile)</script></strong> 次编译 × 
     <strong><script>document.write(number)</script></strong> 次渲染测试
      [escape:false, cache:true]</p>
-<p style="font-size:12px;color:#999;">建议在拥有 v8 javascript 引擎的 chrome 浏览器上进行测试，避免浏览器停止响应。单次结果不一定准确，请多测试几次。</p>
+<p style="font-size:12px;color:#999;">建议在拥有 v8 javascript 引擎的 chrome 浏览器上进行测试，避免浏览器停止响应。<span style="color:#A82700;">单次结果不一定准确，请多次测试综合查看。</span></p>
 <p  style="font-size:12px;color:#999;">本测试来自：<a href="http://aui.github.io/artTemplate/test/test-speed.html" target="_block">http://aui.github.io/artTemplate/test/test-speed.html</a>，在此基础上添加了 tppl 和 YayaTemplate。</p>
 <p><a href=""><button>刷新重试</button></a><button id="button-test" onclick="this.disabled=true;startTest()" style="padding: 10px;">开始测试»</button> <span id="log" style="font-size:12px"><script>for (var i = 0; i < testList.length; i ++) {document.write(testList[i].name + '; ')}</script></span></p>
 <div id="container" style="min-width: 400px; margin: 0 auto"></div>
