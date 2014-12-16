@@ -3,6 +3,8 @@ tppl.js
 
 **全球最快的 js 模板引擎**
 
+============
+
 ## 特性
 
 1.	代码精简，就一个函数，方便嵌入任何位置
@@ -10,6 +12,8 @@ tppl.js
 3.	编译缓存，一次编译重复渲染使用
 4.	无模板语法，使用原生js
 5.	兼容Node.js及所有流行的浏览器
+
+============
 
 ## 快速上手
 
@@ -34,6 +38,8 @@ tppl.js
 	};
 	var html = tppl(document.getElementById('test').innerHTML, data);
 
+============
+
 ## 方法
 
 #### tppl(tpl, data, fast)
@@ -52,6 +58,8 @@ tppl.js
 	var render = tppl(tpl); //渲染函数
 	var html = render(data);  //重复使用
 	var html = render(data, true);  //极速模式渲染
+
+============
 
 ## 语法
 
@@ -78,6 +86,8 @@ valueTag | String | ``:]`` | 输出变量结束标签
 	      [=: dataName :]
 	[: } :]
 
+============
+
 ## 极速模式
 
 tppl 有两种模式可供选择。
@@ -103,10 +113,13 @@ tppl 有两种模式可供选择。
 	    [=:content||"暂无内容":] 
 	</p>
 
+============
 
 ## 下载
 
 * [tppl.js](https://github.com/yangjiePro/tppl/blob/gh-pages/tppl.js) *(原生语法, 1.19kb)* 
+
+============
 	
 ## 性能测试：
 
@@ -118,11 +131,12 @@ tppl 有两种模式可供选择。
 
 tppl 的编译渲染速度是著名的 jQuery 作者 John Resig 开发的 tmpl 的 **43** 倍！与第二名 artTemplate 也有一倍的差距。 查看 [性能测试](http://yangjiepro.github.io/tppl/test/test.htm) ，单次结果不一定准确，请多测几次。
 
+============
+
 ## 授权协议
 
 Released under the MIT, BSD, and GPL Licenses
 
 ============
 
-© 杨捷
-© yangjie@jojoin.com
+© 杨捷 yangjie@jojoin.com
