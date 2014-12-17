@@ -22,7 +22,7 @@ tppl.js
 使用一个``type="text/html"``的``script``标签存放模板：
 	
 	<script id="test" type="text/html">
-	[: if (admin){ :]
+	[: if (title){ :]
 		[: for (var i=0;i<list.length;i++) { :]
 			<div>[=:i:]. [=:list[i].user:]</div>
 		[:}:]
