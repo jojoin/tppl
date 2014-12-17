@@ -62,8 +62,11 @@ tppl.js
 #### tppl.helper(name, handler)
 
 参数`name`表示helper的名称。
+
 参数`handler`表示处理函数。
+
 注册helper需要在调用tppl方法之前使用才有效。
+
 返回处理后的字符串
 
 ============
@@ -79,7 +82,8 @@ valueTag | String | ``:]`` | 输出变量结束标签
 
 **helper语法**
 
-在模板中，通过单斜杠方式调用注册好的helper:
+在模板中，通过`单斜杠`方式调用注册好的helper:
+
 	[=: foo | wordFormat:'formateParam' :]
 
 **变量默认值**
