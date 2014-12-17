@@ -38,11 +38,47 @@ function tppl(tpl, data, fast){
         fn.$ += p.substr(0, x);
         p = p.substr(x+2)
       }
-      fn.$ += "$+='"+p.replace(/\[\=\:(.*?)\:\]/g, "'+$1+'")+"';";
+
+
+      fn.$ += "$+=('"+p.replace(/\[\=\:(.*?)\:\]/g,function(str,$1){
+        var f = $1.split("|")[1];
+        var v = $1.split("|")[0].trim();
+        if(f&&f.indexOf("|")==-1){
+            var h = f.split(":")[0]&&f.split(":")[0].trim();
+            var pa = f.split(":")[1]&&f.split(":")[1].trim();
+            return "'+tppl.helpers[\'"+h+"\']("+v+","+pa.replace(/\\'/g,"'")+")+'";
+        }else{
+          return "'+"+$1+"+'"
+        }
+      })+"');\n";
+
       i++;
     }
     fn.$ += "return $";
   }
 
   return data ? fn(data) : fn;
+}
+
+/**
+ * 模板helper，让模板具有更加强大的功能。
+ * 作者：Moejser
+ * 邮箱：i@moejser.com
+ * 在渲染模板之前调用tppl.helper方法注册helper
+ * @param name {String} helper名是不可重复的，重复定义会被覆盖。
+ * @param handler {Function} 对传入的数据进行处理的函数，这个函数会接受到两个参数：1.被处理的值，2.格式化标志位
+ *
+ * Usage:
+ *  tppl.helper("say",function(title,format){
+ *    return title+format;
+ *  })
+ *
+ * @return  {String}  处理后的字符串
+ */
+
+tppl.helpers = {};
+tppl.helper = function(name, handler){
+  if(name&&hanler){
+    tppl.helpers[name] = handler;
+  }
 }
