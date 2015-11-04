@@ -85,7 +85,7 @@ valueTag | String | ``:]`` | 输出变量结束标签
 
 ## 下载
 
-* [tppl.js](https://github.com/yangjiePro/tppl/gh-pages/tppl.js) *(原生语法, 1.19kb)* 
+* [tppl.js](https://github.com/yangjiePro/tppl/blob/gh-pages/tppl.js) *(原生语法, 1.19kb)* 
 
 ============
 	
