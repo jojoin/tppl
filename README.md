@@ -24,7 +24,7 @@ tppl.js
 	<script id="test" type="text/html">
 	[: if (title){ :]
 		[: for (var i=0;i<list.length;i++) { :]
-			<div>[=:i:]. [=:list[i].user:]</div>
+			<div>[:=i:]. [:=list[i].user:]</div>
 		[:}:]
 		[:=this.name||"name is not found !":]
 	[:}:]
@@ -42,22 +42,17 @@ tppl.js
 
 ## 方法
 
-#### tppl(tpl, data, fast)
+#### tppl(tpl, data)
 
-返回渲染好的模板内容。参数`fast`表示是否采用[极速模式](#极速模式)
+返回渲染好的模板内容。
 
 #### tppl(tpl)
 
 返回渲染函数。
 
-#### tppl(tpl, null, fast)
-
-返回渲染函数（极速模式）。
-
 	var tpl = "..." , data = {...};
 	var render = tppl(tpl); //渲染函数
 	var html = render(data);  //重复使用
-	var html = render(data, true);  //极速模式渲染
 
 ============
 
@@ -90,7 +85,7 @@ valueTag | String | ``:]`` | 输出变量结束标签
 
 ## 下载
 
-* [tppl.js](https://github.com/yangjiePro/tppl/tppl.js) *(原生语法, 1.19kb)* 
+* [tppl.js](https://github.com/yangjiePro/tppl/gh-pages/tppl.js) *(原生语法, 1.19kb)* 
 
 ============
 	
