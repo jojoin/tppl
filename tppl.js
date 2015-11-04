@@ -30,7 +30,7 @@ function tppl(tpl, data){
             var p = tpls[t].split(':]');
             if(t!=0){
                 fn.$ += '='==p[0].charAt(0)
-                  ? "+"+p[0].substr(1)
+                  ? "+("+p[0].substr(1)+")"
                   : ";"+p[0]+"$=$"
             }
             fn.$ += "+'"+p[p.length-1].replace(/\'/g,"\\'")+"'"
