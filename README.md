@@ -8,7 +8,7 @@ tppl.js
 ## 特性
 
 1.	代码精简，就一个函数，方便嵌入任何位置
-2.	性能卓越，为目前最快的模板引擎（[性能测试](http://yangjiepro.github.io/tppl/test/test.htm)）
+2.	性能卓越，为目前最快的模板引擎（[性能测试](http://jojoin.github.io/tppl/test/test.htm)）
 3.	编译缓存，一次编译重复渲染使用
 4.	无模板语法，使用原生js
 5.	兼容Node.js及所有流行的浏览器
@@ -89,7 +89,7 @@ valueTag | String | ``:]`` | 输出变量结束标签
 
 ## 下载
 
-* [tppl.js](https://github.com/yangjiePro/tppl/blob/gh-pages/tppl.js) *(原生语法, 1.19kb)* 
+* [tppl.js](https://github.com/jojoin/tppl/blob/gh-pages/tppl.js) *(原生语法, 1.19kb)* 
 
 ============
 	
@@ -101,7 +101,7 @@ valueTag | String | ``:]`` | 输出变量结束标签
 
 ![性能测试](test/some.jpg)
 
-tppl 的编译渲染速度是著名的 jQuery 作者 John Resig 开发的 tmpl 的 **43** 倍！与第二名 artTemplate 也有一倍的差距。 查看 [性能测试](http://yangjiepro.github.io/tppl/test/test.htm) ，单次结果不一定准确，请多测几次。
+tppl 的编译渲染速度是著名的 jQuery 作者 John Resig 开发的 tmpl 的 **43** 倍！与第二名 artTemplate 也有一倍的差距。 查看 [性能测试](http://jojoin.github.io/tppl/test/test.htm) ，单次结果不一定准确，请多测几次。
 
 ============
 
