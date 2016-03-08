@@ -23,7 +23,7 @@ function tppl(tpl, data){
         return (new Function(k, fn.$)).apply(d, v);
     };
     if(!fn.$){
-        var tpls = tpl.replace(/[\r\n]/g, "").split('[:');
+        var tpls = tpl.replace(/\r\n/g, '\\n').split('[:');
         // log(tpls);
         fn.$ = "var $=''";
         for(var t in tpls){
