@@ -1,6 +1,6 @@
 /**
  * tppl.js 极致性能的 JS 模板引擎
- * Github：https://github.com/yangjiePro/tppl
+ * Github：https://github.com/jojoin/tppl
  * 作者：杨捷  
  * 邮箱：yangjie@jojoin.com
  *
