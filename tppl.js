@@ -33,8 +33,7 @@ exports.tppl = function(tpl, data){
                   : ";"+p[0].replace(/\r\n/g, '')+"$=$"
             }
             // 支持 <pre> 和 [::] 包裹的 js 代码
-            fn.$ += "+'"+p[p.length-1].replace(/\'/g,"\\'").replace(/\r\n/g, '\\n').replace(/\n/g, '\\n').replace(/\r/g, '\\n')+"'"
-
+            fn.$ += "+'"+p[p.length-1].replace(/\'/g,"\\'").replace(/\r\n/g, '\\n').replace(/\n/g, '\\n').replace(/\r/g, '\\n')+"'";
         }
         fn.$ += ";return $;";
         // log(fn.$);
