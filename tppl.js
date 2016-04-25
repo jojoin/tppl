@@ -25,7 +25,7 @@ exports.tppl = function(tpl, data){
     if(!fn.$){
         var tpls = tpl.split('[:');
         fn.$ = "var $=''";
-        for(var t in tpls){
+        for(var t = 0;t < tpls.length;t++){
             var p = tpls[t].split(':]');
             if(t!=0){
                 fn.$ += '='==p[0].charAt(0)
