@@ -2,8 +2,8 @@
  * 
  */
 function tppl(tpl, data, fast){
-  var fn =  function (d) {
-    if(fast){
+  var fn =  function (d, f) {
+    if(f){
         fn.$$ = fn.$$ || new Function(fn.$);
         return fn.$$.apply(d);
     }else{
@@ -32,5 +32,5 @@ function tppl(tpl, data, fast){
     fn.$ += "return $";
   }
 
-  return data ? fn(data) : fn;
+  return data ? fn(data, fast) : fn;
 }
